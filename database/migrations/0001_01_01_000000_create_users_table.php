@@ -11,17 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //tabla de usuarios con campos extras
+
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
-            $table->string('profile_photo_path', 2048)->nullable();
-            $table->timestamps();
-        });
+        $table->id();
+        $table->string('name'); // Nombre del cliente/usuario
+        $table->string('last_name'); // Apellido del cliente/usuario
+        $table->string('email')->unique(); // Correo electrónico
+        $table->string('telefono')->nullable(); // Teléfono del cliente/usuario
+        $table->string('direccion')->nullable(); // Dirección del cliente
+        $table->timestamp('email_verified_at')->nullable();
+        $table->string('password');
+        $table->rememberToken();
+        $table->foreignId('current_team_id')->nullable();
+        $table->string('profile_photo_path', 2048)->nullable();
+        $table->timestamps();
+    });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

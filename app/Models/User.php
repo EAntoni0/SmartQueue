@@ -26,10 +26,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    'name',
+    'last_name',
+    'email',
+    'telefono',
+    'direccion',
+    'password',
+];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -64,4 +67,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Relación con el modelo Mascota
+    public function mascotas()
+    {
+        return $this->hasMany(Mascota::class);
+    }
+
 }
