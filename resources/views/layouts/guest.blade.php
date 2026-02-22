@@ -17,11 +17,14 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
-        </div>
+    <body class="font-sans text-gray-900 antialiased">
+    <div class="min-h-screen w-full bg-no-repeat bg-cover bg-center bg-fixed flex items-center justify-center p-4"
+         style="background-image: url('{{ asset('img/fondo_Web.svg') }}');">
+        
+        {{ $slot }}
+        
+    </div>
 
-        @livewireScripts
-    </body>
+    @livewireScripts
+</body>
 </html>
