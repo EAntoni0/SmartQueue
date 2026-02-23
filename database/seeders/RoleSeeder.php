@@ -5,6 +5,10 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use Spatie\Permission\Models\Role;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 class RoleSeeder extends Seeder
 {
     /**
@@ -21,12 +25,12 @@ class RoleSeeder extends Seeder
 
         // datos del usuario administrador inicial
         $adminUser = User::create([
-            'name' => '',
-            'last_name' => '',
-            'email' => '',
-            'telefono' => '',
-            'direccion' => '',
-            'password' => Hash::make(''), // contraseña del adminstrador inicial
+            'name' => 'admin1',
+            'last_name' => 'yeison',
+            'email' => 'admin@veterimid.com',
+            'telefono' => '9999999999',
+            'direccion' => 'meridaaaaa',
+            'password' => Hash::make('admin123'), // contraseña del adminstrador inicial
         ]);
 
         //se asignael rol de administrador al usuario que acabamos de crear
