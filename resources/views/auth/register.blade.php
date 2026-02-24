@@ -33,60 +33,67 @@
 
                 <x-validation-errors class="mb-3 text-xs" />
 
-                <form method="POST" action="{{ route('register') }}" class="w-full space-y-3">
+                <form id="register-form" method="POST" action="{{ route('register') }}" class="w-full space-y-3">
                     @csrf
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 mb-0.5">Nombre</label>
-                            <input type="text" name="name" :value="old('name')" required autofocus
+                            <label for="name" class="block text-xs font-bold text-gray-700 mb-0.5">Nombre*</label>
+                            <input id="name" type="text" name="name" :value="old('name')" required autofocus
                                 class="w-full px-4 py-2 border-2 border-[#8673A1] rounded-xl focus:ring-[#8673A1] focus:border-[#5E4D7A] text-sm text-gray-700 placeholder-gray-400 shadow-sm transition-all" placeholder="Nombre">
+                            <p id="error-name" class="text-red-500 text-[10px] mt-1 hidden"></p>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 mb-0.5">Apellido</label>
-                            <input type="text" name="lastname" :value="old('lastname')" required
+                            <label for="last_name" class="block text-xs font-bold text-gray-700 mb-0.5">Apellido*</label>
+                            <input id="last_name" type="text" name="last_name" :value="old('lastname')" required
                                 class="w-full px-4 py-2 border-2 border-[#8673A1] rounded-xl focus:ring-[#8673A1] focus:border-[#5E4D7A] text-sm text-gray-700 placeholder-gray-400 shadow-sm transition-all" placeholder="Apellido">
+                            <p id="error-last_name" class="text-red-500 text-[10px] mt-1 hidden"></p>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-0.5">Correo electrónico</label>
-                        <input type="email" name="email" :value="old('email')" required
+                        <label for="email" class="block text-xs font-bold text-gray-700 mb-0.5">Correo electrónico*</label>
+                        <input id="email" type="email" name="email" :value="old('email')" required
                             class="w-full px-4 py-2 border-2 border-[#8673A1] rounded-xl focus:ring-[#8673A1] focus:border-[#5E4D7A] text-sm text-gray-700 placeholder-gray-400 shadow-sm transition-all" placeholder="ejemplo@correo.com">
+                        <p id="error-email" class="text-red-500 text-[10px] mt-1 hidden"></p>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-0.5">Teléfono</label>
-                        <input type="text" name="phone" :value="old('phone')" required
+                        <label for="telefono" class="block text-xs font-bold text-gray-700 mb-0.5">Teléfono*</label>
+                        <input id="telefono" type="text" name="telefono" :value="old('telefono')" required
                             class="w-full px-4 py-2 border-2 border-[#8673A1] rounded-xl focus:ring-[#8673A1] focus:border-[#5E4D7A] text-sm text-gray-700 placeholder-gray-400 shadow-sm transition-all" placeholder="+52 ...">
+                        <p id="error-telefono" class="text-red-500 text-[10px] mt-1 hidden"></p>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-0.5">Dirección completa</label>
-                        <input type="text" name="address" :value="old('address')" required
+                        <label for="direccion" class="block text-xs font-bold text-gray-700 mb-0.5">Dirección completa*</label>
+                        <input id="direccion" type="text" name="direccion" :value="old('direccion')" required
                             class="w-full px-4 py-2 border-2 border-[#8673A1] rounded-xl focus:ring-[#8673A1] focus:border-[#5E4D7A] text-sm text-gray-700 placeholder-gray-400 shadow-sm transition-all" placeholder="Ej. Calle 60 #123, Col. Centro...">
+                        <p id="error-direccion" class="text-red-500 text-[10px] mt-1 hidden"></p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div class="relative">
-                            <label class="block text-xs font-bold text-gray-700 mb-0.5">Contraseña</label>
+                            <label for="password" class="block text-xs font-bold text-gray-700 mb-0.5">Contraseña*</label>
                             <div class="relative">
                                 <input id="password" type="password" name="password" required
-                                    class="w-full px-4 py-2 pr-10 border-2 border-[#8673A1] rounded-xl focus:ring-[#5E4D7A] focus:border-[#5E4D7A] text-sm text-gray-700">
+                                    class="w-full px-4 py-2 pr-10 border-2 border-[#8673A1] rounded-xl focus:ring-[#5E4D7A] focus:border-[#5E4D7A] text-sm text-gray-700 transition-all">
                                 <button type="button" onclick="togglePass('password')" class="absolute right-3 top-2 text-[#8673A1]">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z" /><path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" clip-rule="evenodd" /></svg>
                                 </button>
                             </div>
+                            <p id="error-password" class="text-red-500 text-[10px] mt-1 hidden leading-tight"></p>
                         </div>
                         <div class="relative">
-                            <label class="block text-xs font-bold text-gray-700 mb-0.5">Confirmar</label>
+                            <label for="password_confirmation" class="block text-xs font-bold text-gray-700 mb-0.5">Confirmar*</label>
                             <div class="relative">
                                 <input id="password_confirmation" type="password" name="password_confirmation" required
-                                    class="w-full px-4 py-2 pr-10 border-2 border-[#8673A1] rounded-xl focus:ring-[#5E4D7A] focus:border-[#5E4D7A] text-sm text-gray-700">
+                                    class="w-full px-4 py-2 pr-10 border-2 border-[#8673A1] rounded-xl focus:ring-[#5E4D7A] focus:border-[#5E4D7A] text-sm text-gray-700 transition-all">
                                 <button type="button" onclick="togglePass('password_confirmation')" class="absolute right-3 top-2 text-[#8673A1]">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z" /><path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" clip-rule="evenodd" /></svg>
                                 </button>
                             </div>
+                            <p id="error-password_confirmation" class="text-red-500 text-[10px] mt-1 hidden"></p>
                         </div>
                     </div>
 
@@ -116,9 +123,97 @@
     </div>
 
     <script>
+        // Función para mostrar/ocultar contraseña
         function togglePass(inputId) {
             const input = document.getElementById(inputId);
             input.type = input.type === 'password' ? 'text' : 'password';
         }
+
+        // Lógica de Validación en Tiempo Real
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            function toggleError(inputId, message, show) {
+                const inputEl = document.getElementById(inputId);
+                const errorEl = document.getElementById('error-' + inputId);
+                
+                if (!inputEl || !errorEl) return;
+
+                if (show) {
+                    errorEl.innerHTML = message;
+                    errorEl.classList.remove('hidden');
+                    inputEl.classList.remove('border-[#8673A1]', 'focus:border-[#5E4D7A]');
+                    inputEl.classList.add('border-red-500', 'focus:border-red-500');
+                } else {
+                    errorEl.classList.add('hidden');
+                    inputEl.classList.remove('border-red-500', 'focus:border-red-500');
+                    inputEl.classList.add('border-[#8673A1]', 'focus:border-[#5E4D7A]');
+                }
+            }
+
+            // Validar campos vacíos (al perder el foco)
+            const requiredFields = ['name', 'last_name', 'email', 'telefono', 'direccion'];
+            requiredFields.forEach(function (field) {
+                const input = document.getElementById(field);
+                if (input) {
+                    input.addEventListener('blur', function () {
+                        if (this.value.trim() === '') {
+                            toggleError(field, 'Este campo es obligatorio.', true);
+                        } else {
+                            toggleError(field, '', false);
+                        }
+                    });
+                    input.addEventListener('input', function () {
+                        if (this.value.trim() !== '') {
+                            toggleError(field, '', false);
+                        }
+                    });
+                }
+            });
+
+            // Validación de Contraseña
+            const passwordInput = document.getElementById('password');
+            if (passwordInput) {
+                passwordInput.addEventListener('input', function () {
+                    const val = this.value;
+                    let errors = [];
+
+                    if (val.length === 0) {
+                        toggleError('password', '', false);
+                        return;
+                    }
+
+                    if (val.length < 8) errors.push('• Mínimo 8 caracteres.');
+                    if (!/^[a-zA-Z0-9]+$/.test(val)) errors.push('• Solo letras y números.');
+                    if (!/[A-Z]/.test(val)) errors.push('• Al menos una mayúscula.');
+
+                    if (errors.length > 0) {
+                        toggleError('password', errors.join('<br>'), true);
+                    } else {
+                        toggleError('password', '', false);
+                    }
+
+                    // Validar confirmación si ya había texto
+                    const confirmInput = document.getElementById('password_confirmation');
+                    if (confirmInput && confirmInput.value.length > 0) {
+                        confirmInput.dispatchEvent(new Event('input'));
+                    }
+                });
+            }
+
+            // Validación Confirmar Contraseña
+            const confirmInput = document.getElementById('password_confirmation');
+            if (confirmInput) {
+                confirmInput.addEventListener('input', function () {
+                    const passVal = document.getElementById('password').value;
+                    if (this.value.length === 0) {
+                        toggleError('password_confirmation', '', false);
+                    } else if (this.value !== passVal) {
+                        toggleError('password_confirmation', 'Las contraseñas no coinciden.', true);
+                    } else {
+                        toggleError('password_confirmation', '', false);
+                    }
+                });
+            }
+        });
     </script>
 </x-guest-layout>
